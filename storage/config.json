@@ -1,0 +1,17 @@
+{
+    "APP_URL": "http://localhost/algo/public",
+    "TIMEZONE": "Asia/Kolkata",
+    "WEBHOOK_SECRET": "mysecret",
+    "TEST_MODE": true,
+    "UPSTOX_API_BASE": "https://api.upstox.com/v2",
+    "ACCESS_TOKEN": "",
+    "PRODUCT": "I",
+    "VARIETY": "REGULAR",
+    "VALIDITY": "DAY",
+    "DEFAULT_QTY": "1",
+    "SL_PERCENT": "20",
+    "TARGET_PERCENT": "40",
+    "STRIKE_STEP": "50",
+    "UNDERLYING_FOR_LTP": "NSE_INDEX|NIFTY 50",
+    "UNDERLYING_CODE": "NIFTY"
+}
