@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ORD_001",
+    "ts": "2025-08-22T22:41:53",
+    "strategy_id": "STRAT_DEMO1",
+    "instrument": "NIFTY_23500_CE",
+    "side": "BUY",
+    "qty": 1,
+    "price": 120,
+    "sl_price": 96,
+    "target_price": 168,
+    "status": "FILLED",
+    "mode": "paper"
+  },
+  {
+    "id": "ORD_002",
+    "ts": "2025-08-22T22:41:53",
+    "strategy_id": "STRAT_DEMO2",
+    "instrument": "BANKNIFTY_48200_PE",
+    "side": "SELL",
+    "qty": 1,
+    "price": 200,
+    "sl_price": 250,
+    "target_price": 140,
+    "status": "FILLED",
+    "mode": "live"
+  }
+]

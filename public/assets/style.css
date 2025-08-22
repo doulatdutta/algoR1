@@ -1,0 +1,30 @@
+/* public/assets/style.css (dark) */
+:root {
+  --bg: #0f1115;
+  --panel: #151924;
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+  --primary: #4da3ff;
+  --accent: #22d3ee;
+  --danger: #ef4444;
+  --success: #22c55e;
+}
+
+html, body { background: var(--bg); color: var(--text); height:100%; }
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.sidebar { width: 240px; min-height:100vh; background: #0b0d12; border-right:1px solid #202534; }
+.sidebar .nav-link { color: var(--muted); }
+.sidebar .nav-link.active { background: var(--primary); color:#0b0d12; }
+.content { min-height: 100vh; background: var(--bg); }
+.card-dark { background: var(--panel); border:1px solid #1f2331; border-radius: 12px; padding:18px; }
+.table-dark { --bs-table-bg: #111522; --bs-table-striped-color: #e5e7eb; --bs-table-striped-bg: #12192a; }
+.input-dark, .select-dark, .textarea-dark {
+  background:#0e1320; color:var(--text); border:1px solid #1f2331; border-radius:10px; padding:10px;
+}
+.btn-primary { background: var(--primary); border-color: var(--primary); }
+.btn-outline { border:1px solid #293045; color: var(--text); }
+.badge-live { background: #ef4444; }
+.badge-paper { background: #22c55e; }
+code, .code { background:#0b0f1a; border:1px solid #1c2133; border-radius:8px; padding:6px 8px; color:#a5b4fc}
+.small { color: var(--muted); }

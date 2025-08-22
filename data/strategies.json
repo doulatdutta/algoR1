@@ -1,0 +1,32 @@
+[
+  {
+    "id": "STRAT_DEMO1",
+    "name": "NIFTY CE Paper",
+    "mode": "paper",
+    "underlying": "NIFTY",
+    "option_type": "CALL",
+    "strike_mode": "ATM",
+    "strike_offset": 0,
+    "qty": 1,
+    "stoploss": 20,
+    "trailing_sl": 0,
+    "profit_book": 40,
+    "trail_profit": 0,
+    "active": true
+  },
+  {
+    "id": "STRAT_DEMO2",
+    "name": "BANKNIFTY PE Live",
+    "mode": "live",
+    "underlying": "BANKNIFTY",
+    "option_type": "PUT",
+    "strike_mode": "OTM",
+    "strike_offset": 2,
+    "qty": 1,
+    "stoploss": 25,
+    "trailing_sl": 0,
+    "profit_book": 30,
+    "trail_profit": 0,
+    "active": true
+  }
+]

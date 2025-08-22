@@ -1,0 +1,13 @@
+[
+  {
+    "id": "POS_001",
+    "strategy_id": "STRAT_DEMO1",
+    "instrument": "NIFTY_23500_CE",
+    "side": "BUY",
+    "qty": 1,
+    "avg_price": 120,
+    "sl_price": 96,
+    "target_price": 168,
+    "ts": "2025-08-22T22:41:53"
+  }
+]
