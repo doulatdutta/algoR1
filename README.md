@@ -1,145 +1,171 @@
-## Upstox Algo Trading Platform (TradingView Webhook → Options Orders)
+📈 Algo Trading Dashboard
 
-This project is a web-based algo trading platform built in PHP to connect TradingView alerts with the Upstox API.
-It places market orders on ATM NIFTY options with configurable stoploss and profit-lock (target).
+A PHP + Bootstrap (dark theme) based dashboard for managing and monitoring algorithmic trading strategies.
+Supports strategy creation, paper/live trading modes, signal monitoring, live positions, and trade summaries, with file-based JSON storage (MySQL integration can be added later).
 
-##  🚀 Features
+🚀 Features
+🔐 Strategy Management
 
-Dashboard with multiple tabs:
+Create, edit, clone, and delete strategies
 
-Overview → Summary of latest trades & webhook activity
+Unique webhook URL generated for each strategy
 
-Settings → Configure API keys, quantity, stoploss %, target %, secrets
+Strategy parameters:
 
-Logs → View all webhook requests and order actions
+Stoploss
 
-Tools → Sync Upstox instruments, clear logs, test webhooks
+Trailing Stoploss
 
-TradingView → Webhook integration
+Profit Booking
 
-ATM option finder (NIFTY)
+Trailing Profit Booking
 
-Market entry orders with:
+Activate in Paper Trade or Live Trade mode
 
-SL-M stoploss order
+📡 Signal Processing
 
-LIMIT target order
+Accepts webhooks in JSON format:
 
-JSON-backed configuration (editable via UI)
+{ "date": "{{timenow}}", "action": "BUY" }
 
-Test Mode (safe simulation, no live trades)
 
-## 📂 Project Structure
-/public
-  ├─ index.php          → Dashboard UI
-  ├─ webhook.php        → TradingView webhook endpoint
-  ├─ save_settings.php  → Save settings form
-  ├─ tools.php          → Utility actions (sync instruments, clear logs)
-  └─ assets/styles.css  → Dashboard theme
+Supported actions:
 
-/src
-  ├─ config.php         → Load/save settings
-  ├─ helpers.php        → Logger & utilities
-  ├─ upstox.php         → Upstox REST API client
-  └─ instruments.php    → ATM strike finder (via Upstox master.csv)
+"BUY" → Buy Call
 
-/storage
-  └─ config.json        → Stores saved settings
+"SELL" → Sell Call
 
-/logs
-  ├─ webhook.log
-  ├─ orders.log
-  └─ app.log
+"SHORT" → Buy Put
 
-## ⚡ Installation
-1. Localhost (XAMPP)
+"COVER" → Sell Put
 
-Copy the project folder into C:\xampp\htdocs\algo
+📊 Dashboard
 
-Start Apache (and MySQL if you need later)
+Overview of all strategies and their status
 
-Open: http://localhost/algo/public/
+Live Nifty50, Sensex, BankNifty, and FinNifty data (via Upstox API)
 
-2. cPanel / Web Hosting
+Quick access to paper/live trades
 
-Upload the zip to your hosting account
+📑 Signals & Orders
 
-Extract it inside public_html/algo/
+Signals Tab – list of all incoming signals per strategy
 
-Access: https://yourdomain.com/algo/public/
+Orders Tab – list of all executed orders (paper + live)
 
-## 🔑 Setup
+Positions Tab – open live/paper trades across strategies
 
-Go to the Settings tab and fill in:
+Daily Summary Tab – P&L for the day
 
-API Key
+📈 Market Data (Planned / Optional)
 
-API Secret
+Options Chain view
 
-Access Token
+Live stock data & charts
 
-Quantity, Stoploss %, Target %
+Overlay of executed orders and stoploss trails on charts
 
-Webhook secret
+⚡ Tech Stack
 
-Mode: Test/Live
+PHP (vanilla)
 
-Save settings (creates/updates /storage/config.json)
+Bootstrap 5 (Dark Theme)
 
-Go to Tools → Sync Instruments
-This downloads master.csv (Upstox instruments list) to /storage/.
+JSON-based storage (easy migration to MySQL later)
 
-## 📡 TradingView Setup
+Modular file structure
 
-Create an alert in TradingView (e.g., EMA crossover).
+📂 Project Structure
+algo/
+ ├─ public/
+ │   ├─ index.php          # Dashboard home
+ │   ├─ dashboard.php      # Overview
+ │   ├─ strategies.php     # Strategy management
+ │   ├─ signals.php        # Signal list
+ │   ├─ settings.php       # Settings page
+ │   ├─ css/
+ │   │   └─ style.css      # Custom dark theme styles
+ │   ├─ js/
+ │   │   └─ app.js         # Client-side logic
+ │   └─ vendor/
+ │       ├─ bootstrap.min.css
+ │       └─ bootstrap.bundle.min.js
+ ├─ src/
+ │   ├─ helpers.php        # Utility functions
+ │   ├─ router.php         # Simple PHP router
+ │   └─ storage.php        # File-based storage handler
+ ├─ data/
+ │   ├─ strategies.json    # Saved strategies
+ │   ├─ signals.json       # All incoming signals
+ │   └─ orders.json        # Placed orders (paper/live)
+ └─ config.php             # Config settings
 
-Webhook URL:
+⚙️ Installation
 
-http://localhost/algo/public/webhook.php
+Clone or download this repo into your htdocs (XAMPP) or web root.
 
+C:\xampp\htdocs\algo\
 
-(replace localhost with your cPanel domain later)
 
-Webhook message (example):
+Start Apache (XAMPP Control Panel).
 
-{ "secret": "secret123", "action": "BUY_CALL", "expiry": "weekly", "qty": 1 }
+Visit:
 
+http://localhost/algo/public/
 
-or
+🔑 Usage
 
-{ "secret": "secret123", "action": "SELL_PUT", "expiry": "weekly", "qty": 1 }
+Create Strategy
 
+Go to Strategies Tab
 
-Alerts will be processed instantly and orders sent to Upstox.
+Define parameters (Stoploss, Profit Booking, etc.)
 
-📊 Logs
+Choose Paper or Live mode
 
-Check the Logs tab or /logs/*.log:
+Webhook URL
 
-webhook.log → Incoming TradingView alerts
+Each strategy has a unique webhook URL (generated automatically)
 
-orders.log → Order placements
+Send signals in JSON format:
 
-app.log → Errors & general events
+{ "date": "2025-08-23 10:15:00", "action": "BUY" }
 
-⚠️ Important Notes
 
-Always test in Test Mode first (orders are simulated).
+Monitor Signals & Orders
 
-Ensure master.csv is refreshed daily (use Tools → Sync Instruments).
+Check Signals Tab for all webhook signals
 
-Adjust upstox.php if your account requires instrument_key instead of instrument_token.
+Orders will show up in Orders Tab
 
-This version only supports ATM NIFTY Options (expandable later).
+Active trades shown in Positions Tab
 
-🛠️ Next Features (Roadmap)
+Daily results in Summary Tab
 
-Show open positions in Dashboard
+📌 Roadmap
 
-Order status polling
+ Add authentication & user roles
 
-Multi-strategy routing (different secrets)
+ Switch storage from JSON → MySQL
 
-BankNifty/Finnifty support
+ Full Upstox API integration (login + live market data + order placement)
 
-💡 Built with ❤️ in PHP for algo traders.
+ Chart integration with live order overlays
+
+ Telegram/Email notifications
+
+🛠️ Developer Notes
+
+Default setup uses JSON file storage for easy local testing
+
+For production:
+
+Migrate storage to MySQL
+
+Secure routes with authentication
+
+Deploy on server (Apache/Nginx + PHP 8)
+
+📄 License
+
+MIT License – free to use and modify.
